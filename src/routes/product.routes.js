@@ -1,8 +1,11 @@
 const express = require('express');
-const { getProducts, getProduct, createProduct, updateProduct, deleteProduct } = require('../controllers/product.controller');
+const { getProducts, getFeaturedProducts, getProduct, createProduct, updateProduct, deleteProduct } = require('../controllers/product.controller');
 const { protect, authorize } = require('../middleware/auth');
 
 const router = express.Router();
+
+router.route('/featured')
+  .get(getFeaturedProducts);
 
 router.route('/')
   .get(getProducts)

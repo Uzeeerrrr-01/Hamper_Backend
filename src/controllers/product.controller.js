@@ -46,6 +46,15 @@ exports.getProducts = async (req, res, next) => {
   }
 };
 
+exports.getFeaturedProducts = async (req, res, next) => {
+  try {
+    const products = await Product.find({ isActive: true, isFeatured: true }).populate('category').sort('-createdAt').limit(4);
+    res.status(200).json({ success: true, count: products.length, data: products });
+  } catch (error) {
+    next(error);
+  }
+};
+
 exports.getProduct = async (req, res, next) => {
   try {
     const product = await Product.findById(req.params.id).populate('category');

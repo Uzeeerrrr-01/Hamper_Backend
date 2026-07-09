@@ -9,6 +9,7 @@ const ProductSchema = new mongoose.Schema(
     images:      [{ type: String }],
     category:    { type: mongoose.Schema.Types.ObjectId, ref: 'Category' },
     isActive:    { type: Boolean, default: true },
+    isFeatured:  { type: Boolean, default: false },
   },
   { timestamps: true }
 );
